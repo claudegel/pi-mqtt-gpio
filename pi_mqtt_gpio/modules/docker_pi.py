@@ -5,7 +5,6 @@ REQUIREMENTS = ("smbus")
 CONFIG_SCHEMA = {
     "i2c_bus_num": {"type": "integer", "required": True, "empty": False}, # 1
     "dev_addr": {"type": "integer", "required": True, "empty": False}, # 0x10, 0x11, 0x12, 0x13
-    "relay": {"type": "integer", "required": True, "empty": False}, # relay number to trigger 1 to 4
 }
 
 ON = 0xFF
@@ -21,14 +20,13 @@ class GPIO(GenericGPIO):
         import smbus
         self.bus = smbus.SMBus(config["i2c_bus_num"])
         self.address = config["dev_addr"]
-        self.relay = config["relay"]
 
     def setup_pin(self, pin, direction, pullup, pin_config):
         pass
-        
+
     def set_pin(self, pin, value):
         """ Turn on/off relay number self.relay """
-        self.bus.write_byte_data(self.address, self.relay, value)
+        self.bus.write_byte_data(self.address, pin, value)
 
     def cleanup(self):
         self.bus.close()
