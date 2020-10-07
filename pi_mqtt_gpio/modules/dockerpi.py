@@ -1,6 +1,6 @@
 from pi_mqtt_gpio.modules import GenericGPIO
 
-REQUIREMENTS = ("smbus")
+REQUIREMENTS = ("smbus",)
 
 CONFIG_SCHEMA = {
     "i2c_bus_num": {"type": "integer", "required": True, "empty": False}, # 1
