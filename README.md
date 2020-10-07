@@ -13,6 +13,7 @@ GPIO Modules
 - PCF8574 IO chip (`pcf8574`)
 - PiFaceDigital 2 IO board (`piface2`)
 - Beaglebone GPIO (`beaglebone`)
+- DockerPi 4 Channel Relay (`dockerpi`)
 
 Sensors
 -------
@@ -314,6 +315,11 @@ gpio_modules:
     module: orangepi
     board: r1
     mode: board
+    
+  - name: dockerpi
+    module: dockerpi
+    i2c_bus_num: 1
+    dev_addr: 0x10
 
 digital_inputs:
   - name: button
